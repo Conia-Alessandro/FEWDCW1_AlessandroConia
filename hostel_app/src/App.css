@@ -1,3 +1,94 @@
+:root {
+  --primary-red: #FF5252; /* Red */
+  --secondary-orange: #FFA726; /* Orange */
+  --accent-yellow: #FFD600; /* Yellow */
+  --background-light: #FFF; /* Light background color */
+  --text-light: #fff; /* light text color */
+  --text-dark: #333; /* Dark text color */
+}
 .App {
   text-align: center;
+}
+.err_404{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* 80% of the viewport as vertical centering */
+  text-align: center;
+}
+.err_404 h3 {
+  font-size: 4em; 
+  color: #DC143C; /* crimson fro errors */
+  margin-bottom: 8px; 
+}
+.err_404 p {
+  font-size: 1.8em; /* Adjust the font size as needed */
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* 80% rather than 100% of vertical screen height*/
+  text-align: center;
+}
+
+.placeholder h3 {
+  font-size: 2em;
+  color: #FFA500;
+  margin-bottom: 10px;
+}
+
+.placeholder .icon {
+  color: #f39c12; /* the attention triangle color */
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.placeholder p {
+  font-size: 1.6em;
+}
+
+.navigation_light{
+  background-color: var(--primary-red);
+  padding: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+.link {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1.2em;
+  margin-right: 2em;
+  padding: 0.5em 2em;
+  border:2px solid black;
+  border-radius: 5px;
+  transition: color 0.3s ease, transform 0.3s ease; /* for animations */
+}
+
+.link:hover {
+  background-color: black;
+  transform: translateY(3px); /* Lower the link for animation purposes*/
+}
+
+.active {
+  color: var(--text-light);
+  background-color: var(--primary-red);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .link {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+  }
 }
