@@ -4,6 +4,7 @@ import Home from './components/Home';
 import NoPage from './components/NoPage';
 import Placeholder from './components/Placeholder';
 import Navigation from './components/Navigation';
+import DisplayMap from './components/DisplayMap';
 function App() {
   return (
     <>
@@ -11,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigation />}>
             <Route path="/" element={<Home />} />
-            <Route path="/map" element={<Placeholder />} />
+            <Route path="/map" element={<DisplayMap/>} />
             <Route path="/search" element={<Placeholder />} />
             <Route path="/filter" element={<Placeholder />} />
             <Route path="/reviews/:hostelId" element={<Placeholder />} />
