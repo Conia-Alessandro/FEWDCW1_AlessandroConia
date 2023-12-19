@@ -7,22 +7,112 @@
   --text-light: #fff; /* light text color */
   --text-dark: #333; /* Dark text color */
 }
-.app{
+.App{
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Helvetica Neue', sans-serif; /* Use a similar font */
 }
-.section{
-  margin-bottom: 20px;
-  border:2px solid var(--primary-red);
-  width: 100%;
-  /*
-  text-align: center;
-  justify-content: center;
-  */
+.section {
+  margin: 25px auto;
+  border: 2px solid var(--primary-red);
+  border-radius: 10px; /* Add rounded corners */
+  width: 50%; 
+  margin-top: 2px;
+  padding: 20px; /* Increase padding for more spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left; /* Align text to the left */
+}
+.section_filters{
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  border-radius: 10px;
+  margin-bottom:5px;
+  width:100%;
+  margin-top: 0;
+  padding: 5px 20px 5px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.section_filters label{
+  margin-right: 10px;
+}
+.section_filters #filter_cafe{
+  accent-color:  #C70039;
+  width: 1.5em;
+  height: 1.5em;
+}
+.search_field{
+  font-size: 1.3em;
+  border-radius: 10px;
+  /* top right bottom left */
+  padding: 5px 0 5px 25px; 
+  width:20em;
+}
+/* Search styling*/
+ .checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
 }
 
+/* Hide the actual checkbox */
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the custom checkbox */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  background-color: #ccc;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transition: transform 0.3s ease-out;
+}
+
+/* Lift up the checkbox when checked */
+.checkbox-container input[type="checkbox"]:checked + .custom-checkbox {
+  transform: translateY(-5px);
+  background-color:blue;
+}
+
+/* Style for the container div */
+.date-picker-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* the gap between the date-pickers*/
+}
+.date-picker:nth-child(2){
+  display: flex;
+  align-items: center;
+  border-right: 2px solid var(--text-light);
+  padding: 8px;
+  border-radius: 8px;
+}
+.calendar-icon:first-child {
+  color: #3498db; /* Sets the color to blue */
+  font-size: 20px; 
+  margin-right: 5px; 
+}
+/* Style for each date picker div */
+.date-picker:first-child {
+  display: flex;
+  align-items: center;
+  border-left: 2px solid var(--text-light);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+/* Error handling */
 .err_404{
   display: flex;
   flex-direction: column;
