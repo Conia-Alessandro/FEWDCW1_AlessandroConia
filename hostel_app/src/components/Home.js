@@ -30,10 +30,6 @@ const Home = () => {
     return (
         <div className="App">
             <AppSection>
-                <FilterContext.Provider value={[selectedFilters, setSelectedFilters]}>
-                    <Search details={items} />
-                    <p>{cafeSelected ? "filters applied" : "filters not applied"}</p>
-                </FilterContext.Provider>
                 <Filters>
                     <label>Cafe</label>
                     <input id="filter_cafe" type="checkbox" name="cafe"
@@ -52,15 +48,20 @@ const Home = () => {
                             <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                         </div>
                         <div className="date-picker">
-                            <FiCalendar className="calendar-icon"/>
+                            <FiCalendar className="calendar-icon" />
                             <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
                         </div>
                     </div>
+                    <p className={cafeSelected ? "selected" : "not_selected"}>{cafeSelected ? "filters applied" : "filters removed"}</p>
                 </Filters>
             </AppSection>
             <AppSection>
-                <p>This is where the map goes</p>
+                <FilterContext.Provider value={[selectedFilters, setSelectedFilters]}>
+                    <Search details={items} />
+                   
+                </FilterContext.Provider>
             </AppSection>
+         
         </div>
     )
 }

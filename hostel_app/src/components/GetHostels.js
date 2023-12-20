@@ -5,7 +5,7 @@ const GetHostels = () => {
     const [hostels, setHostels] = useState([]); // Initial state to empty array
 
     const fetchData = useCallback(() => {
-        const url = "../data/hostels.json";
+        const url = "https://localhost:3000/hostels"; /* URL to API  */
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
