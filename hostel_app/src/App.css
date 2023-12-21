@@ -1,5 +1,6 @@
 :root {
   --primary-red: #FF5252; /* Red */
+  --primary-orange: #FF9800;
   --dark-orange : #ff4d01; /* dark orange */
   --secondary-orange: #FFA726; /* Orange */
   --accent-yellow: #FFD600; /* Yellow */
@@ -9,6 +10,10 @@
   --text-darker: #222; /*darker text color */
   --section_color:#FFA726;
   --filter-color:#C70039;
+  --text-green: #4caf50;
+  --text-light-green: lightgreen;
+  --text-dark-green:#45a049;
+
 }
 .App{
   text-align: center;
@@ -33,7 +38,7 @@
   /* border: 2px solid var(--primary-red);*/
   background-color: var(--section_color);
   border-radius: 10px; /* Add rounded corners */
-  width: 50vw;
+  width: 60vw;
   height: fit-content; 
   margin-top: 2px;
   padding: 20px; /* Increase padding for more spacing */
@@ -123,6 +128,13 @@
   width: 100%;
   height: 400px; 
   margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.map{
+  width: 70%;
 }
 /* Set the map container to fill its parent */
 .leaflet-container {
@@ -145,8 +157,105 @@
   height: 200px;
   text-align: center;
 }
+*/
+/* Popup style */
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: var(--text-dark);
+  padding: 6px 9px; 
+}
+.popup span{
+  font-size: 16px;
+}
+.popup b{
+  font-size: 14px;
+  color: var(--text-light);
+}
+.popup_button {
 
-/* Error handling */
+  background-color: var(--text-green); 
+  border: none; 
+  color: var(--text-light);
+  margin:0 auto;
+  padding: 10px 20px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  cursor: pointer; /* Add cursor pointer on hover */
+}
+
+.popup_button:hover{
+  background-color: var(--text-dark-green); /* Darker green on hover */
+}
+/* from 5 to 4.5 */
+.rating-excellent{
+  color: #4CAF50; /* Green */
+}
+/* from 4.5 to 4 */
+.rating-great{
+  color: #8BC34A; /* Light Green */
+}
+/* from 4 to 3.5 */
+.rating-good{
+  color: #FFEB3B; /* Yellow */
+}
+/* from 3.5 to 3 */
+.rating-ok{
+  color: #FF9800; /* Orange */
+}
+/* from 3 to 2 */
+.rating-bad{
+  color: #F44336; /* Red */
+}
+/* less than 2 */
+.rating-not-recommended{
+  color: #D32F2F; /* Dark Red */
+}
+/*Itinerary Styling */
+.initial_itinerary_summary{
+  position: relative;
+  width: 30%;
+  height: fit-content;
+  margin: 0 auto;
+  font-size: 15px;
+  color:var(--text-darker);
+  float:right;
+}
+/* Remove default list styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style list items */
+li {
+  padding: 8px; /* Adjust the padding as needed */
+  position: relative;
+}
+
+/* Remove underlines from links within list items */
+li a {
+  text-decoration: none;
+}
+
+/*styles for hover and active*/
+li:hover {
+  background-color: #f0f0f0; /* Highlight background color on hover */
+}
+
+li a:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
+li:active {
+  background-color: #ccc; /* Background color on active state */
+}
+
 .err_404{
   display: flex;
   flex-direction: column;

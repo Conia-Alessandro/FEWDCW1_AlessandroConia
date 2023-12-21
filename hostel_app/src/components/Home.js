@@ -57,8 +57,7 @@ const Home = () => {
             </AppSection>
             <AppSection>
                 <FilterContext.Provider value={[selectedFilters, setSelectedFilters]}>
-                    <Search details={items} />
-                   
+                    <Search details={items} /> 
                 </FilterContext.Provider>
             </AppSection>
          
