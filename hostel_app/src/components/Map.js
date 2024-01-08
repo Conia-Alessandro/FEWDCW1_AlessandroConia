@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import SelectedHostelsContext from "./SelectedHostelsContext";
 import InitialItinerary from "./InitialItinerary";
+import StarRating from "./StarRating";
 /*
 delete L.Icon.Default.prototype.getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -41,7 +42,8 @@ const Map = ({ items, hostelId }) => {
     const [activeHostel, setActiveHostel] = useState(position);
     const [activeHostelRating, setActiveHostelRating] = useState(0);
     const [selectedHostels, setSelectedHostels] = useState([]);
-
+    const [selectedReviewText, setSelectedReviewText] = useState("No reviews")
+    const [selectedReviewNumber, setSelectedReviewNumber] = useState(0);
     const markerClicked = (position) => {
         setActiveHostel(position);
         console.log("position we are at now ", activeHostel);
@@ -54,13 +56,35 @@ const Map = ({ items, hostelId }) => {
     }
     const calculateAverage = (hostel) => {
         let average;
-        if (hostel.ratings !== undefined) {
+        let noOfRatings = hostel.ratings.length;
+        if (hostel.ratings !== undefined && noOfRatings > 0) {
+            console.log("Number of ratings: " , noOfRatings);
             let totalSum = hostel.ratings.reduce((sum, rating) => sum + rating, 0);
-            average = (totalSum / hostel.ratings.length).toFixed(1);
+            average = (totalSum / noOfRatings).toFixed(1);
         } else {
             average = 0;
         }
-        setActiveHostelRating(average)
+        setSelectedReviewNumber(noOfRatings);
+        setActiveHostelRating(average);
+        switch (true) {
+            case average >= 4.5:
+                setSelectedReviewText("Excellent");
+                break;
+            case average >= 4:
+                setSelectedReviewText("Great")
+                break;
+            case average >= 3.5:
+                setSelectedReviewText("Good")
+                break;
+            case average >= 3:
+                setSelectedReviewText("Ok")
+                break;
+            case average >= 2:
+                setSelectedReviewText("Not recommended")
+                break;
+            default:
+                setSelectedReviewText("No Ratings")
+        }
 
     }
     const setRatingClass = (rating) => {
@@ -75,6 +99,8 @@ const Map = ({ items, hostelId }) => {
                 return "rating-ok";
             case rating >= 2:
                 return "rating-bad";
+            case rating === 0:
+                return "rating-not-existing";
             default:
                 return "rating-not-recommended";
         }
@@ -104,7 +130,8 @@ const Map = ({ items, hostelId }) => {
                     >
                         <Popup>
                             <div className="popup" role="alert">
-                                <span className={setRatingClass(activeHostelRating)}>{activeHostelRating}</span><b>{hostel.name}</b>
+                                <StarRating totalStars = {5} stars ={activeHostelRating}/>
+                                <span className={setRatingClass(activeHostelRating)}>{activeHostelRating} {selectedReviewText}({selectedReviewNumber})</span><b>{hostel.name}</b>
                                 <input type="button" value={"Add to Itinerary"}
                                     className="popup_button"
 

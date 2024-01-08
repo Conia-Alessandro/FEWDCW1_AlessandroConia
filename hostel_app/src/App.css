@@ -193,15 +193,17 @@
 }
 /* from 5 to 4.5 */
 .rating-excellent{
-  color: #4CAF50; /* Green */
+  color: #FFEB3B; /* Yellow */
+  
 }
 /* from 4.5 to 4 */
 .rating-great{
-  color: #8BC34A; /* Light Green */
+  color: #4CAF50; /* Green */
+  
 }
 /* from 4 to 3.5 */
 .rating-good{
-  color: #FFEB3B; /* Yellow */
+  color: #8BC34A; /* Light Green */
 }
 /* from 3.5 to 3 */
 .rating-ok{
@@ -214,6 +216,9 @@
 /* less than 2 */
 .rating-not-recommended{
   color: #D32F2F; /* Dark Red */
+}
+.rating-not-existing{
+  color:blueviolet;
 }
 /*Itinerary Styling */
 .initial_itinerary_summary{
