@@ -6,6 +6,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import SelectedHostelsContext from "./SelectedHostelsContext";
 import InitialItinerary from "./InitialItinerary";
 import StarRating from "./StarRating";
+import { FaPhone, FaEnvelope } from 'react-icons/fa';
 /*
 delete L.Icon.Default.prototype.getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -31,8 +32,8 @@ const icon = new L.Icon({
 });
 const active_icon = new L.Icon({
     iconUrl: svgDataUrl_Active,
-    iconSize: [40,40],
-    iconAnchor: [20,40],
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
 })
 
 const Map = ({ items, hostelId }) => {
@@ -44,12 +45,13 @@ const Map = ({ items, hostelId }) => {
     const [selectedHostels, setSelectedHostels] = useState([]);
     const [selectedReviewText, setSelectedReviewText] = useState("No reviews")
     const [selectedReviewNumber, setSelectedReviewNumber] = useState(0);
+    const [showMore, setShowMore] = useState(false);
     const markerClicked = (position) => {
         setActiveHostel(position);
         console.log("position we are at now ", activeHostel);
     }
     const handleClick = (evt, hostel) => {
-        console.log("current hostel that you've clicked to add is ",hostel);
+        console.log("current hostel that you've clicked to add is ", hostel);
         let updatedSelectedList = [...selectedHostels, hostel];
         setSelectedHostels(updatedSelectedList);
         console.log("currently, you've added : ", selectedHostels);
@@ -58,7 +60,7 @@ const Map = ({ items, hostelId }) => {
         let average;
         let noOfRatings = hostel.ratings.length;
         if (hostel.ratings !== undefined && noOfRatings > 0) {
-            console.log("Number of ratings: " , noOfRatings);
+            console.log("Number of ratings: ", noOfRatings);
             let totalSum = hostel.ratings.reduce((sum, rating) => sum + rating, 0);
             average = (totalSum / noOfRatings).toFixed(1);
         } else {
@@ -118,7 +120,7 @@ const Map = ({ items, hostelId }) => {
                             hostel.location.lat,
                             hostel.location.long
                         ]}
-                        icon={ activeHostel[0] === hostel.location.lat && activeHostel[1] === hostel.location.long ? active_icon : icon}
+                        icon={activeHostel[0] === hostel.location.lat && activeHostel[1] === hostel.location.long ? active_icon : icon}
                         title={`This hostel is located at ${hostel.location.lat}, ${hostel.location.long}`}
                         eventHandlers={{
                             click: () => {
@@ -128,24 +130,45 @@ const Map = ({ items, hostelId }) => {
                         }}
 
                     >
-                        <Popup>
-                            <div className="popup" role="alert">
-                                <StarRating totalStars = {5} stars ={activeHostelRating}/>
-                                <span className={setRatingClass(activeHostelRating)}>{activeHostelRating} {selectedReviewText}({selectedReviewNumber})</span><b>{hostel.name}</b>
-                                <input type="button" value={"Add to Itinerary"}
-                                    className="popup_button"
+                        <Popup >
+                            <div className="popup_container">
+                                <div className="popup" role="alert">
+                                    <StarRating totalStars={5} stars={activeHostelRating} />
+                                    <span className={setRatingClass(activeHostelRating)}>{activeHostelRating} {selectedReviewText}({selectedReviewNumber})</span>
+                                    <b>{hostel.name}</b>
+                                    {showMore ?
+                                        <span className="hostel_description"><div>
+                                            <FaPhone />
+                                            <span>Phone: {hostel.phone}</span>
+                                        </div>
+                                            <div>
+                                                <FaEnvelope />
+                                                <span>Email: {hostel.email}</span>
+                                            </div>
+                                        </span>
+                                        : ""}
+                                    <input type="button" value={"Add to Itinerary"}
+                                        className="popup_button"
 
-                                    onClick={(evt) => {
-                                        handleClick(evt, hostel);
-                                    }} />
+                                        onClick={(evt) => {
+                                            handleClick(evt, hostel);
+                                        }} />
+
+                                </div>
+                                <div className="about_container">
+                                    <input type="button" value={"find out more"}
+                                        className="about_hostel"
+                                        onClick={(evt) => { setShowMore(!showMore) }}
+                                    />
+                                </div>
                             </div>
                         </Popup>
                     </Marker>
                 ))}
             </MapContainer>
-            
+
             <SelectedHostelsContext.Provider value={[selectedHostels, setSelectedHostels]}>
-                <InitialItinerary/>
+                <InitialItinerary />
             </SelectedHostelsContext.Provider>
         </div>
     )
