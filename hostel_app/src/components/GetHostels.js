@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-/* The following is a function that retrives the hostels from the API. */
+/* The following is a function that retrieves the hostels from the API. */
 const GetHostels = () => {
     const [status, setStatus] = useState('idle');
     const [hostels, setHostels] = useState([]); // Initial state to empty array
 
     const fetchData = useCallback(() => {
-        const url = "https://localhost:3000/hostels"; /* URL to API  */
+        const url = "http://localhost:3000/hostels"; /* URL to API  */
         fetch(url)
             .then((response) => response.json())
             .then((data) => {

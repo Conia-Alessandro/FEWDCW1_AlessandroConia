@@ -3,7 +3,7 @@ import FilterContext from "./FilterContext";
 import Map from "./Map";
 import AppSection from "./AppSection";
 
-function Search({ details }) {
+function Search({ details}) {
   const [filters, setFilters] = useContext(FilterContext);
   const [searchQuery, setSearchQuery] = useState("");
   const [hostelId, setHostelId] = useState("");
