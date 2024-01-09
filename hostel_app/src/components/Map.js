@@ -2,11 +2,11 @@ import L from "leaflet";
 import React, { useState } from "react";
 /* Function that calls API */
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet'
 import SelectedHostelsContext from "./SelectedHostelsContext";
 import InitialItinerary from "./InitialItinerary";
 import StarRating from "./StarRating";
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarker } from 'react-icons/fa';
 /*
 delete L.Icon.Default.prototype.getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -116,12 +116,12 @@ const Map = ({ items, hostelId }) => {
                 {items.map((hostel) => (
                     <Marker
                         key={hostel.id}
+                        title={hostel.name}
                         position={[
                             hostel.location.lat,
                             hostel.location.long
                         ]}
                         icon={activeHostel[0] === hostel.location.lat && activeHostel[1] === hostel.location.long ? active_icon : icon}
-                        title={`This hostel is located at ${hostel.location.lat}, ${hostel.location.long}`}
                         eventHandlers={{
                             click: () => {
                                 markerClicked([hostel.location.lat, hostel.location.long]) /* the map expects a [lat, long] object */
@@ -130,6 +130,11 @@ const Map = ({ items, hostelId }) => {
                         }}
 
                     >
+                        <Tooltip direction="bottom" >
+                            <div className="tooltip_container">
+                                <span>&pound;</span> {hostel.prices[0]}
+                            </div>
+                        </Tooltip>
                         <Popup >
                             <div className="popup_container">
                                 <div className="popup" role="alert">
@@ -137,13 +142,18 @@ const Map = ({ items, hostelId }) => {
                                     <span className={setRatingClass(activeHostelRating)}>{activeHostelRating} {selectedReviewText}({selectedReviewNumber})</span>
                                     <b>{hostel.name}</b>
                                     {showMore ?
-                                        <span className="hostel_description"><div>
-                                            <FaPhone />
-                                            <span>Phone: {hostel.phone}</span>
-                                        </div>
+                                        <span className="hostel_description">
+                                            <div>
+                                                <FaPhone />
+                                                <span>Phone: {hostel.phone}</span>
+                                            </div>
                                             <div>
                                                 <FaEnvelope />
                                                 <span>Email: {hostel.email}</span>
+                                            </div>
+                                            <div>
+                                                <FaMapMarker/>
+                                                {`This hostel is located at ${hostel.location.lat}, ${hostel.location.long}`}
                                             </div>
                                         </span>
                                         : ""}

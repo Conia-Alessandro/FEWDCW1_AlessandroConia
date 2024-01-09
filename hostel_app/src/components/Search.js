@@ -13,8 +13,8 @@ function Search({ details}) {
     // Update the filtered data when filters change.
     if (filters.length !== 0) {
       if (filters.includes("cafe")) {
-        const cafeHotels = details.filter((entry) => entry.cafe);
-        setFiltered(cafeHotels);
+        const cafeHostels = details.filter((entry) => entry.facilities.cafe);
+        setFiltered(cafeHostels);
       } else {
         console.log("You must have selected another filter");
         // Add additional filters for each facility and filter on the previous one.
