@@ -13,8 +13,8 @@ function App() {
           <Route path="/" element={<Navigation />}>
             <Route path="/" element={<Home />} />
             <Route path="/map" element={<DisplayMap/>} />
-            <Route path="/search" element={<Placeholder />} />
-            <Route path="/filter" element={<Placeholder />} />
+            <Route path="/itineraries" element={<Placeholder />} />
+            <Route path="/aboutus" element={<Placeholder />} />
             <Route path="/reviews/:hostelId" element={<Placeholder />} />
             <Route path="/itinerary" element={<Placeholder />} />
             <Route path="/user-itinerary" element={<Placeholder />} />

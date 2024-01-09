@@ -14,11 +14,11 @@ const Navigation = () => {
                 <NavLink to="/map" as="a" className="link" activeclassname="active">
                     Map
                 </NavLink>
-                <NavLink to="/search" as="a" className="link" activeclassname="active">
-                    Search
+                <NavLink to="/itineraries" as="a" className="link" activeclassname="active">
+                    itineraries
                 </NavLink>
-                <NavLink to="/filter" as="a" className="link" activeclassname="active">
-                    Filter
+                <NavLink to="/aboutUs" as="a" className="link" activeclassname="active">
+                    aboutUs
                 </NavLink>
             </nav>
             <Outlet />

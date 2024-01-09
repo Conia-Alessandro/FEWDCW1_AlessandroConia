@@ -11,6 +11,7 @@ import { FaBed, FaCoffee, FaLock, FaShieldAlt, FaShower, FaUsb, FaWifi } from "r
 
 const Home = () => {
     const [selectedFilters, setSelectedFilters] = useState([]);
+    const [startDate, setStartDate] = useState(new Date());
     // [cafe,freeWifi,privateRooms,security,lockers,commonBathrooms,usbPorts]
     const [filterNames, setFilterNames] = useState([]);
     const [selectedFiltersStates,setSelectedFiltersStates] = useState([false,false,false,false,false,false,false]);
@@ -132,6 +133,16 @@ const Home = () => {
                     }}
                     />
                     <p className={cafeSelected ? "selected" : "not_selected"}>{cafeSelected ? "filters applied" : "filters removed"}</p>
+                    <br>
+                    </br>
+                    <div className="date-picker-container">
+                        <div className="date-picker">
+                            <FiCalendar className="calendar-icon" />
+                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        </div>
+                       
+                    </div>
+
                 </Filters>
             </AppSection>
             <AppSection>
