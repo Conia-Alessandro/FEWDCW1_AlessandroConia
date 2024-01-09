@@ -9,21 +9,48 @@ function Search({ details}) {
   const [hostelId, setHostelId] = useState("");
   const [filtered, setFiltered] = useState(details);
 
+  
   useEffect(() => {
-    // Update the filtered data when filters change.
-    if (filters.length !== 0) {
+    const filterData = () => {
+      let preFiltered = details;
+      console.log(filters);
       if (filters.includes("cafe")) {
-        const cafeHostels = details.filter((entry) => entry.facilities.cafe);
-        setFiltered(cafeHostels);
-      } else {
-        console.log("You must have selected another filter");
-        // Add additional filters for each facility and filter on the previous one.
+        console.log("cafe!");
+        preFiltered = preFiltered.filter((entry) => entry.facilities.cafe);
+        console.log(preFiltered);
       }
-    } else {
-      // If no filters, use the original data.
-      setFiltered(details);
-    }
+      if (filters.includes("freeWifi")) {
+        console.log("freewifi!");
+        preFiltered = preFiltered.filter((entry) => entry.facilities.freeWifi);
+        console.log(preFiltered);
+      }
+      if (filters.includes("privateRooms")) {
+        console.log("privaterooms!");
+        preFiltered = preFiltered.filter((entry) => entry.facilities.privateRooms);
+        console.log(preFiltered);
+      }
+      if (filters.includes("security")) {
+        console.log("security!");
+        preFiltered = preFiltered.filter((entry) => entry.facilities.security);
+        console.log(preFiltered);
+      }
+      if (filters.includes("lockers")) {
+        preFiltered = preFiltered.filter((entry) => entry.facilities.lockers);
+      }
+      if (filters.includes("commonBathrooms")) {
+        preFiltered = preFiltered.filter((entry) => entry.facilities.commonBathrooms);
+      }
+      if (filters.includes("usbPorts")) {
+        preFiltered = preFiltered.filter((entry) => entry.facilities.usbPorts);
+      }
+  
+      return preFiltered;
+    };
+  
+    // Update the filtered data when filters change.
+    setFiltered((prevFiltered) => filterData(prevFiltered));
   }, [filters, details]);
+  
 
   const handleInputChange = (evt) => {
     evt.preventDefault();
